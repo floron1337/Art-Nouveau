@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc65f002-09f2-42f1-a7a8-1b5b49681bf0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Art_Nouveau/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Art_Nouveau/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Art_Nouveau/static/css/stil.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/baza.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/exemplu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art_Nouveau/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Art_Nouveau/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art_Nouveau/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -34,13 +41,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "Django Server.Art-Nouveau.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/floron/Desktop/FMI/Django/Art-Nouveau",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -49,6 +60,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Art_Nouveau" />
+      <recent name="$PROJECT_DIR$/templates" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Art-Nouveau" type="Python.DjangoServer" factoryName="Django server">
       <module name="Art-Nouveau" />
@@ -92,11 +110,28 @@
       <option name="presentableId" value="Default" />
       <updated>1759931634077</updated>
       <workItem from="1759931635076" duration="2386000" />
-      <workItem from="1759966593281" duration="1863000" />
+      <workItem from="1759966593281" duration="2330000" />
+      <workItem from="1760015658861" duration="4621000" />
+      <workItem from="1760023500830" duration="86000" />
+      <workItem from="1760437480141" duration="7525000" />
+      <workItem from="1760614004636" duration="2734000" />
+      <workItem from="1760619335999" duration="30000" />
+      <workItem from="1760875340317" duration="4144000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
