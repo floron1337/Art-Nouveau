@@ -1,0 +1,46 @@
+{% extends 'Art_Nouveau/baza.html' %}
+{% load static %}
+
+{% block title %}Art Nouveau{% endblock %}
+
+{% block nav_extra %}
+    <h1>|</h1>
+    <div class="dropdown">
+        <button class="dropdown-btn">
+            Navigate
+        </button>
+        <div class="dropdown-content">
+            <a href="#about-intro">Introduction</a>
+            <a href="#about-founding">Founding</a>
+            <a href="#about-join">Be a part</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <section id="about-intro" class="about-section">
+        <h1>Our Mission</h1>
+        <div class="about-section-content">
+            <img src="{% static "Art_Nouveau/imagini/about1.jpg" %}" alt="" width="50%"/>
+            <p>
+                Art Nouveau is a premier destination for art enthusiasts and creators alike. Our mission is to provide a unique space where fine art meets creativity, allowing individuals to both acquire exquisite pieces and bring their own artistic visions to life.
+            </p>
+        </div>
+    </section>
+    <section id="about-founding" class="about-section">
+        <div class="about-section-content">
+            <p>
+                Founded in 2025, Art Nouveau has quickly established itself as a hub for contemporary art and design. We pride ourselves on our curated gallery, featuring works from renowned artists as well as emerging talents. Our integrated studio facilities offer artists the tools and environment they need to create, collaborate, and innovate.
+            </p>
+            <img src="{% static "Art_Nouveau/imagini/about2.jpg" %}" alt="" width="50%"/>
+        </div>
+    </section>
+    <section id="about-join" class="about-section">
+        <div class="about-section-content">
+            <img src="{% static "Art_Nouveau/imagini/about3.jpg" %}" alt="" width="50%"/>
+            <p>
+                Whether you're looking to purchase a masterpiece or seeking a space to nurture your creativity, Art Nouveau is here to support your artistic journey. Join us in celebrating the beauty of art and the power of imagination.
+            </p>
+        </div>
+    </section>
+{% endblock %}

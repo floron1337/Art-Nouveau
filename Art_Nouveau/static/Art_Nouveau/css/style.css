@@ -1,0 +1,183 @@
+:root {
+    --primary-text-color: black;
+    --secondary-text-color: white;
+    --primary-bg-color: #F8F0E5;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Times New Roman", Times, serif;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+
+body {
+    background-color: var(--primary-bg-color);
+}
+
+main {
+    padding: 92px 128px 64px;
+}
+
+.sep-square{
+    width: 48px;
+    height: 48px;
+    background-color: black;
+}
+
+.sep-square-sm {
+    width: 24px;
+    height: 24px;
+    background-color: black;
+}
+
+#main-header {
+    position: fixed;
+    width: 100%;
+}
+
+#header-nav {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    background-color: rgba(248, 240, 229, 0.7);
+    padding: 12px 64px;
+}
+
+#header-nav h1{
+    color: var(--primary-text-color);
+    font-size: 52px;
+}
+
+#nav-links{
+    margin-left: auto;
+}
+
+#nav-links a:hover {
+    text-decoration: underline;
+}
+
+#header-nav a {
+    font-size: 32px;
+    padding: 12px 16px;
+}
+
+.dropdown-btn {
+    font-size: 32px;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--primary-bg-color);
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content > a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 24px !important;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+h1 {
+    font-weight: lighter;
+    font-size: 2.5em;
+}
+
+#index-intro {
+    display: flex;
+    gap: 128px;
+    align-items: center;
+}
+
+#index-intro p {
+    font-size: 42px;
+}
+
+#index-intro-text > a {
+    align-items: center;
+    font-size: 52px;
+    display: flex;
+    gap: 8px;
+}
+
+#index-intro-text > a:hover{
+    text-decoration: underline;
+}
+
+.exposition-gallery{
+    display:flex;
+    justify-content: space-between;
+}
+
+.exposition-item-text > h2{
+    font-weight: normal;
+    font-size:32px;
+}
+
+.exposition-item-text > p {
+    font-size:20px;
+}
+
+#page-footer {
+    padding: 24px 0;
+    width: 100%;
+    text-align: center;
+}
+
+#page-footer > h2 {
+    font-weight: normal;
+}
+
+#footer-sep {
+    margin: 0 128px;
+    height: 1px;
+    background-color: black;
+}
+
+#footer-admin {
+    display:flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.about-section > h1 {
+    font-size: 72px;
+}
+
+.about-section-content {
+    display: flex;
+    gap: 64px;
+    align-items: center;
+}
+
+.about-section-content > p {
+    font-size: 42px;
+}

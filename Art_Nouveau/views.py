@@ -64,26 +64,23 @@ class BaseLoggableView(View):
 
 class IndexView(BaseLoggableView):
     def get(self, request):
-        return HttpResponse('''
-        <head>
-            <title>Art Nouveau</title>
-        </head>
-        <body>
-            <h1>Art Nouveau</h1>
-            <p>
-            Proiectul presupune dezvoltarea unei aplicații web
-            care oferă utilizatorilor posibilitatea de a vizualiza, 
-            achiziționa și crea opere de artă printr-un magazin online.
-            Imaginile vor putea fi clasificate în funcție de stilul
-            artistic din care fac parte, iar fiecare lucrare va include
-            informații despre autor, preț și o descriere. De asemenea,
-            aplicația va permite încărcarea, crearea și editarea imaginilor
-            prin intermediul unui editor integrat. După încărcare, fiecare
-            imagine va fi transmisă moderatorilor pentru evaluare,
-            urmând ca aceștia să aprobe sau să respingă publicarea pe site.
-            </p>
-        </body>
-        ''')
+        return render(request, "Art_Nouveau/index.html")
+
+class AboutView(BaseLoggableView):
+    def get(self, request):
+        return render(request, "Art_Nouveau/about.html")
+
+class ProductsView(BaseLoggableView):
+    def get(self, request):
+        return render(request, "Art_Nouveau/wip.html")
+
+class ContactView(BaseLoggableView):
+    def get(self, request):
+        return render(request, "Art_Nouveau/wip.html")
+
+class CartView(BaseLoggableView):
+    def get(self, request):
+        return render(request, "Art_Nouveau/wip.html")
 
 class InfoView(BaseLoggableView):
     def afis_data(self, tip=None):
@@ -243,22 +240,3 @@ class LogsView(BaseLoggableView):
 
         html += '</body>'
         return HttpResponse(html)
-
-
-def afis_template(request):
-    return render(request,"baza.html",
-        {
-            "titlu_tab":"Titlu fereastra",
-            "titlu_articol":"Titlu afisat",
-            "continut_articol":"Continut text"
-        }
-    )
-
-def afis_exemplu(request):
-    return render(request, "exemplu.html",
-          {
-              "titlu_tab": "Titlu fereastra",
-              "titlu_articol": "Titlu afisat",
-              "continut_articol": "Continut text"
-          }
-    )
