@@ -5,33 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc65f002-09f2-42f1-a7a8-1b5b49681bf0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Art_Nouveau/context_processors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Art_Nouveau/static/Art_Nouveau/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Art_Nouveau/static/Art_Nouveau/imagini/main.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/about.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/wip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Art_Nouveau/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/product.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Art-Nouveau.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Art-Nouveau.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art_Nouveau/context_processors.py" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/context_processors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Art_Nouveau/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Art_Nouveau/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Art_Nouveau/static/css/stil.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Art_Nouveau/static/imagini/pictura.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/static/Art_Nouveau/imagini/pictura.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art_Nouveau/static/Art_Nouveau/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/static/Art_Nouveau/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/baza.html" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/baza.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Art_Nouveau/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Art_Nouveau/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/baza.html" beforeDir="false" afterPath="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau/baza.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/exemplu.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -55,9 +58,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/floron/Desktop/FMI/Django/Art-Nouveau",
+    "last_opened_file_path": "/home/floron/Desktop/FMI/statistica",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -72,11 +76,11 @@
       <recent name="$PROJECT_DIR$/Art_Nouveau/static/Art_Nouveau/imagini" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/media" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Art_Nouveau/static/Art_Nouveau" />
       <recent name="$PROJECT_DIR$/Art_Nouveau/static" />
       <recent name="$PROJECT_DIR$/Art_Nouveau/templates/Art_Nouveau" />
-      <recent name="$PROJECT_DIR$/Art_Nouveau/templates" />
-      <recent name="$PROJECT_DIR$/Art_Nouveau" />
     </key>
   </component>
   <component name="RunManager">
@@ -130,7 +134,13 @@
       <workItem from="1760619335999" duration="30000" />
       <workItem from="1760875340317" duration="15833000" />
       <workItem from="1761043431831" duration="5000" />
-      <workItem from="1761483482248" duration="5936000" />
+      <workItem from="1761483482248" duration="5991000" />
+      <workItem from="1761551875561" duration="66000" />
+      <workItem from="1761668173719" duration="6024000" />
+      <workItem from="1762431062214" duration="1075000" />
+      <workItem from="1762438436831" duration="5759000" />
+      <workItem from="1762445123488" duration="27000" />
+      <workItem from="1763337927190" duration="3832000" />
     </task>
     <servers />
   </component>

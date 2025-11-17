@@ -1,10 +1,14 @@
 import datetime
 from urllib.parse import urlparse
+
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from ordered_set import OrderedSet
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
+
+from Art_Nouveau.models import Product, Category
 
 LOG_ENTRIES = []
 
@@ -70,9 +74,58 @@ class AboutView(BaseLoggableView):
     def get(self, request):
         return render(request, "Art_Nouveau/about.html")
 
+
 class ProductsView(BaseLoggableView):
-    def get(self, request):
-        return render(request, "Art_Nouveau/wip.html")
+    template_name = "Art_Nouveau/products.html"
+    items_per_page = 5
+
+    def get(self, request, category_slug=None):
+        category = None
+
+        if category_slug:
+            category = get_object_or_404(Category, slug=category_slug)
+            product_list_query = Product.objects.filter(category=category)
+        else:
+            product_list_query = Product.objects.all()
+
+        sort_param = request.GET.get('sort', 'a')
+
+        if sort_param == 'd':
+            order_by_field = '-name'  # Descendent
+        else:
+            order_by_field = 'name'  # Ascendent (default)
+
+        product_list = product_list_query.select_related('category').order_by(order_by_field)
+
+        paginator = Paginator(product_list, self.items_per_page)
+        page_number = request.GET.get('page')
+
+        try:
+            products_page = paginator.get_page(page_number)
+        except PageNotAnInteger:
+            products_page = paginator.get_page(1)
+        except EmptyPage:
+            products_page = paginator.get_page(paginator.num_pages)
+
+        context = {
+            'products_page': products_page,
+            'category': category,
+            'current_sort': sort_param,
+        }
+
+        return render(request, self.template_name, context)
+
+
+class ProductDetailView(BaseLoggableView):  # R1
+    template_name = "Art_Nouveau/product.html"
+
+    def get(self, request, product_id):
+        product = get_object_or_404(Product.objects.select_related('category'), id=product_id)
+
+        context = {
+            'product': product
+        }
+        return render(request, self.template_name, context)
 
 class ContactView(BaseLoggableView):
     def get(self, request):
@@ -188,7 +241,6 @@ class LogsView(BaseLoggableView):
         accesari = request.GET.get("accesari")
         dubluri = request.GET.get("dubluri", "false").lower() == "true"
         iduri = request.GET.getlist("iduri")
-
         err = ''
         if ultimele is not None:
             try:

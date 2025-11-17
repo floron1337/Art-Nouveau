@@ -1,0 +1,102 @@
+{% extends 'Art_Nouveau/baza.html' %}
+{% load static %}
+
+{% block title %}Products | Art Nouveau{% endblock %}
+
+{% block nav_extra %}
+    <h1>|</h1>
+    <div class="dropdown">
+        <button class="dropdown-btn">
+            Categories
+        </button>
+        <div class="dropdown-content">
+            {% for cat in menu_categories %}
+                <a href="{{ cat.get_absolute_url }}">
+                    {% if cat.icon_class %}<i class="{{ cat.icon_class }}"></i> {% endif %}
+                    {{ cat.name }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    {% if category %}
+        <div class="category-header" style="margin-bottom: 20px;">
+            <h2>
+                {% if category.icon_class %}<i class="{{ category.icon_class }}"></i> {% endif %}
+                {{ category.name }}
+            </h2>
+            {% if category.description %}
+                <p>{{ category.description|linebreaks }}</p>
+            {% endif %}
+        </div>
+    {% else %}
+        <h2>All Products</h2>
+    {% endif %}
+
+    <div class="sorting-controls" style="margin-bottom: 10px;">
+        Sort by name:
+        <a href="{{ request.path }}?sort=a">Ascending</a> |
+        <a href="{{ request.path }}?sort=d">Descending</a>
+    </div>
+    <hr>
+
+    <div class="product-list-container">
+        {% for product in products_page %}
+            <div class="product-card">
+                <a href="{{ product.get_absolute_url }}">
+                    {% if product.image %}
+                        <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% else %}
+                        No image available
+                    {% endif %}
+                    <div class="product-info">
+                        <div class="product-details">
+                            <h4>
+                                {{ product.name }}
+                            </h4>
+                            {% if product.category %}
+                                <p class="category">
+                                    <a href="{{ product.category.get_absolute_url }}">
+                                        {% if product.category.icon_class %}
+                                            <i class="{{ product.category.icon_class }}"></i>
+                                        {% endif %}
+                                        <strong>{{ product.category.name }}</strong>
+                                    </a>
+                                </p>
+                            {% else %}
+                                <p class="category">Uncategorized</p>
+                            {% endif %}
+                        </div>
+                        <div class="product-card-row">
+                            <h5 class="product-author">{{ product.author }}</h5>
+                            <p class="price">${{ product.price }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+            <p>No products to display.</p>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <div class="step-links">
+            {% if products_page.has_previous %}
+                <a href="?page=1{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">&laquo; first</a>
+                <a href="?page={{ products_page.previous_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ products_page.number }} of {{ products_page.paginator.num_pages }}.
+            </span>
+
+            {% if products_page.has_next %}
+                <a href="?page={{ products_page.next_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">next</a>
+                <a href="?page={{ products_page.paginator.num_pages }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">last &raquo;</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

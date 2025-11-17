@@ -5,12 +5,14 @@
         <title>{% block title %}Pagina mea{% endblock %}</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="{% static 'Art_Nouveau/css/style.css' %}"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     </head>
     <body>
         <header id="main-header">
             <nav id="header-nav">
-                <h1>Art Nouveau</h1>
-
+                <a href="/">
+                    <h1>Art Nouveau</h1>
+                </a>
                 {% block nav_extra %}{% endblock %}
 
                 <div id="nav-links">

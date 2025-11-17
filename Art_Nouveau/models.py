@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+from django.utils.text import slugify
 
 
 class Category(models.Model):
@@ -6,10 +8,22 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     icon_url = models.URLField(max_length=300, blank=True)
+    slug = models.SlugField(max_length=110, unique=True, blank=True,
+                            help_text="auto generated if left empty")
+
+    icon_class = models.CharField(max_length=50, blank=True,
+                                  help_text="Ex: 'fas fa-paint-brush' sau 'fa fa-palette'")
 
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('category_products', kwargs={'category_slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 class Subcategory(models.Model):
     TYPE_CHOICES = [
@@ -30,7 +44,7 @@ class Subcategory(models.Model):
 
 
 class Product(models.Model):
-    product_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
@@ -46,12 +60,15 @@ class Product(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField(blank=True)
     author = models.CharField(max_length=100)
-    price = models.FloatField()
+    price = models.FloatField(default=0)
     stock = models.PositiveIntegerField(default=0)
+    image = models.ImageField(upload_to='Art_Nouveau/static/product_images/', blank=True, null=True)
 
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('product_detail', kwargs={'product_id': self.id})
 
 class Image(models.Model):
     image_id = models.AutoField(primary_key=True)
@@ -85,11 +102,7 @@ class Discount(models.Model):
 
 class Award(models.Model):
     award_id = models.AutoField(primary_key=True)
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        related_name="awards"
-    )
+    products = models.ManyToManyField(Product, related_name="awards")
     name = models.CharField(max_length=150)
     description = models.TextField(blank=True)
     award_image_url = models.URLField(max_length=300, blank=True)
@@ -100,15 +113,9 @@ class Award(models.Model):
 
 class Exhibition(models.Model):
     exhibition_id = models.AutoField(primary_key=True)
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="exhibitions"
-    )
+    products = models.ManyToManyField(Product, related_name="exhibitions")
     description = models.TextField(blank=True)
     banner_image_url = models.URLField(max_length=300, blank=True)
 
     def __str__(self):
-        return f"Exhibition #{self.exhibition_id} - {self.product.name}"
+        return f"Exhibition #{self.exhibition_id}"

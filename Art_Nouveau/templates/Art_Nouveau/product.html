@@ -1,0 +1,39 @@
+{% extends 'Art_Nouveau/baza.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} | Art Nouveau{% endblock %}
+
+{% block content %}
+    <div class="product-detail-container">
+        <h2>{{ product.name }}</h2>
+        
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 600px; height: auto; margin-bottom: 20px;">
+        {% else %}
+            <p>Image unavailable.</p>
+        {% endif %}
+        
+        <hr>
+        
+        <h3>Product Details</h3>
+        <p>{{ product.description|linebreaks }}</p>
+        
+        <p class="price" style="font-size: 1.2em; font-weight: bold;">Price: ${{ product.price }}</p>
+
+        {% if product.category %}
+            <p class="category">
+                Category: 
+                <a href="{{ product.category.get_absolute_url }}">
+                    {% if product.category.icon_class %}
+                        <i class="{{ product.category.icon_class }}"></i>
+                    {% endif %}
+                    <strong>{{ product.category.name }}</strong>
+                </a>
+            </p>
+        {% endif %}
+        
+        <br>
+        <a href="{% url 'products' %}">Back to product list</a>
+
+    </div>
+{% endblock %}
