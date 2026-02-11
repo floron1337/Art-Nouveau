@@ -1,13 +1,13 @@
-{% extends 'Art_Nouveau/baza.html' %}
+{% extends 'Art_Nouveau/base.html' %}
 {% load static %}
 
 {% block title %}Home | Art Nouveau{% endblock %}
 
 {% block nav_extra %}
-    <h1>|</h1>
+    <span class="nav-sep">|</span>
     <div class="dropdown">
         <button class="dropdown-btn">
-            Navigate
+            Navigate <i class="fa-solid fa-caret-down" style="font-size: 0.6em;"></i>
         </button>
         <div class="dropdown-content">
             <a href="#index-intro">Introduction</a>
@@ -18,14 +18,16 @@
 {% endblock %}
 
 {% block content %}
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
     <section id="index-intro">
-        <img src="{% static "Art_Nouveau/imagini/main.jpg" %}" alt="" height="600px"/>
+        <img src="{% static "Art_Nouveau/images/main.jpg" %}" alt="" height="600px"/>
         <div id="index-intro-text">
             <p>
                 A singular destination for both the connoisseur and the creator. <br>Acquire fine art from our hand-selected gallery or utilize our integrated studio to bring your own concepts to fruition.
             </p>
             <br><br>
-            <a href=""><div class="sep-square"></div> Join us.</a>
+            <a href="{% url 'register' %}"><div class="sep-square"></div> Join us.</a>
         </div>
     </section>
     <br><br>
@@ -34,7 +36,7 @@
         <br>
         <div class="exposition-gallery">
             <div class="exposition-item">
-                <img src="{% static "Art_Nouveau/imagini/dali1.jpg" %}" alt="" height="500px"/>
+                <img src="{% static "Art_Nouveau/images/dali1.jpg" %}" alt="" height="500px"/>
                 <div class="exposition-item-text">
                     <h2>The Persistence of Memory</h2>
                     <p>Salvador DALI</p>
@@ -42,7 +44,7 @@
             </div>
 
             <div class="exposition-item">
-                <img src="{% static "Art_Nouveau/imagini/dali2.jpg" %}" alt="" height="500px"/>
+                <img src="{% static "Art_Nouveau/images/dali2.jpg" %}" alt="" height="500px"/>
                 <div class="exposition-item-text">
                     <h2>Galatea of the Spheres</h2>
                     <p>Salvador DALI</p>
@@ -50,7 +52,7 @@
             </div>
 
             <div class="exposition-item">
-                <img src="{% static "Art_Nouveau/imagini/dali3.jpg" %}" alt="" height="500px"/>
+                <img src="{% static "Art_Nouveau/images/dali3.jpg" %}" alt="" height="500px"/>
                 <div class="exposition-item-text">
                     <h2>The Hallucinogenic Toreador</h2>
                     <p>Salvador DALI</p>
@@ -58,7 +60,7 @@
             </div>
 
             <div class="exposition-item">
-                <img src="{% static "Art_Nouveau/imagini/dali4.jpg" %}" alt="" height="500px"/>
+                <img src="{% static "Art_Nouveau/images/dali4.jpg" %}" alt="" height="500px"/>
                 <div class="exposition-item-text">
                     <h2>The Burning Giraffe</h2>
                     <p>Salvador DALI</p>
@@ -72,7 +74,7 @@
         <br>
         <div class="exposition-gallery">
             <div class="exposition-item">
-                <img src="{% static "Art_Nouveau/imagini/arh1.jpg" %}" alt="" height="500px"/>
+                <img src="{% static "Art_Nouveau/images/arh1.jpg" %}" alt="" height="500px"/>
                 <div class="exposition-item-text">
                     <h2>Urban Dystopia</h2>
                     <p>Armand MERGEDIA</p>
@@ -80,7 +82,7 @@
             </div>
 
             <div class="exposition-item">
-                <img src="{% static "Art_Nouveau/imagini/arh2.jpg" %}" alt="" height="500px"/>
+                <img src="{% static "Art_Nouveau/images/arh2.jpg" %}" alt="" height="500px"/>
                 <div class="exposition-item-text">
                     <h2>Posers</h2>
                     <p>Raluca-Melinda UMUT</p>
@@ -88,7 +90,7 @@
             </div>
 
             <div class="exposition-item">
-                <img src="{% static "Art_Nouveau/imagini/arh3.jpg" %}" alt="" height="500px"/>
+                <img src="{% static "Art_Nouveau/images/arh3.jpg" %}" alt="" height="500px"/>
                 <div class="exposition-item-text">
                     <h2>Nonconformism</h2>
                     <p>Alex VELEA-CORTEZ</p>

@@ -1,102 +1,208 @@
-{% extends 'Art_Nouveau/baza.html' %}
+{% extends "Art_Nouveau/base.html" %}
 {% load static %}
 
-{% block title %}Products | Art Nouveau{% endblock %}
+{% block title %}Products{% if current_category %} - {{ current_category.name|default:current_category.slug }}{% endif %}{% endblock %}
 
 {% block nav_extra %}
-    <h1>|</h1>
+    <span class="nav-sep">|</span>
     <div class="dropdown">
         <button class="dropdown-btn">
-            Categories
+            Categories <i class="fa-solid fa-caret-down" style="font-size: 0.6em;"></i>
         </button>
-        <div class="dropdown-content">
-            {% for cat in menu_categories %}
-                <a href="{{ cat.get_absolute_url }}">
-                    {% if cat.icon_class %}<i class="{{ cat.icon_class }}"></i> {% endif %}
-                    {{ cat.name }}
-                </a>
-            {% endfor %}
-        </div>
+
+        {% if menu_categories %}
+            <div class="dropdown-content">
+                <a href="{% url 'products' %}">All Collections</a>
+                {% for cat in menu_categories %}
+                    <a href="{% url 'category_products' cat.slug %}">
+                        {{ cat.name }}
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
 
-
 {% block content %}
-    {% if category %}
-        <div class="category-header" style="margin-bottom: 20px;">
-            <h2>
-                {% if category.icon_class %}<i class="{{ category.icon_class }}"></i> {% endif %}
-                {{ category.name }}
-            </h2>
-            {% if category.description %}
-                <p>{{ category.description|linebreaks }}</p>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <div class="products-container">
+
+    <div class="products-header">
+        {% if current_category %}
+            <h1>
+                {% if current_category.icon_class %}
+                    <i class="{{ current_category.icon_class }}"></i>
+                {% endif %}
+                {{ current_category.name }}
+            </h1>
+            <div class="gold-divider"></div>
+            {% if current_category.description %}
+                <p class="category-description">{{ current_category.description }}</p>
             {% endif %}
+        {% else %}
+            <h1>The Collection</h1>
+            <div class="gold-divider"></div>
+        {% endif %}
+    </div>
+
+    <div class="control-panel">
+        <h3>Curate Your View</h3>
+
+        <form method="get" class="filter-form">
+            {% if filter_form.non_field_errors %}
+                <div class="alert alert-error">
+                    {{ filter_form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="filter-grid">
+                <div class="filter-item">
+                    {{ filter_form.name.label_tag }}
+                    {{ filter_form.name }}
+                    {% if filter_form.name.errors %}<div class="field-error">{{ filter_form.name.errors }}</div>{% endif %}
+                </div>
+
+                <div class="filter-item">
+                    <label>Price Range</label>
+                    <div class="price-inputs">
+                        {{ filter_form.min_price }}
+                        <span>-</span>
+                        {{ filter_form.max_price }}
+                    </div>
+                </div>
+
+                <div class="filter-item">
+                    {{ filter_form.items_per_page.label_tag }}
+                    {{ filter_form.items_per_page }}
+                </div>
+
+                {% if filter_form.category %}
+                <div class="filter-item">
+                    {{ filter_form.category.label_tag }}
+                    {{ filter_form.category }}
+                </div>
+                {% endif %}
+
+                 <div class="filter-item full-width">
+                    {{ filter_form.description.label_tag }}
+                    {{ filter_form.description }}
+                </div>
+            </div>
+
+            {% if current_sort %}
+                <input type="hidden" name="sort" value="{{ current_sort }}">
+            {% endif %}
+
+            <div class="filter-actions">
+                <button type="submit" class="btn-filter">Apply Filters</button>
+
+                {% if current_category %}
+                     <a href="{% url 'category_products' current_category.slug %}" id="reset-filters-btn" class="btn-reset">Reset</a>
+                {% else %}
+                     <a href="{% url 'products' %}" id="reset-filters-btn" class="btn-reset">Reset</a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+    <div class="sorting-bar">
+        <div class="sort-links">
+            <span>Sort Order: </span>
+            <a href="?sort=a{% if current_category %}&category={{ current_category.slug }}{% endif %}"
+               class="sort-btn {% if current_sort == 'a' %}active{% endif %}">
+               Price Ascending
+            </a>
+            <a href="?sort=d{% if current_category %}&category={{ current_category.slug }}{% endif %}"
+               class="sort-btn {% if current_sort == 'd' %}active{% endif %}">
+               Price Descending
+            </a>
         </div>
-    {% else %}
-        <h2>All Products</h2>
+    </div>
+
+    {% if category_error_msg %}
+         <div class="alert alert-error">{{ category_error_msg }}</div>
+    {% endif %}
+    {% if repagination_warning %}
+        <div class="alert alert-warning">{{ repagination_warning }}</div>
     {% endif %}
 
-    <div class="sorting-controls" style="margin-bottom: 10px;">
-        Sort by name:
-        <a href="{{ request.path }}?sort=a">Ascending</a> |
-        <a href="{{ request.path }}?sort=d">Descending</a>
-    </div>
-    <hr>
-
-    <div class="product-list-container">
-        {% for product in products_page %}
-            <div class="product-card">
-                <a href="{{ product.get_absolute_url }}">
-                    {% if product.image %}
-                        <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+    <div class="product-grid">
+      {% for p in products %}
+        <article class="product-card">
+            <div class="product-image-container">
+                <a href="{% url 'product' p.id %}">
+                    {% if p.image %}
+                        <img src="{{ p.image.url }}" alt="{{ p.name }}">
                     {% else %}
-                        No image available
+                        <img src="{% static 'Art_Nouveau/images/default_product.png' %}" alt="No image" class="default-img">
                     {% endif %}
-                    <div class="product-info">
-                        <div class="product-details">
-                            <h4>
-                                {{ product.name }}
-                            </h4>
-                            {% if product.category %}
-                                <p class="category">
-                                    <a href="{{ product.category.get_absolute_url }}">
-                                        {% if product.category.icon_class %}
-                                            <i class="{{ product.category.icon_class }}"></i>
-                                        {% endif %}
-                                        <strong>{{ product.category.name }}</strong>
-                                    </a>
-                                </p>
-                            {% else %}
-                                <p class="category">Uncategorized</p>
-                            {% endif %}
-                        </div>
-                        <div class="product-card-row">
-                            <h5 class="product-author">{{ product.author }}</h5>
-                            <p class="price">${{ product.price }}</p>
-                        </div>
-                    </div>
                 </a>
             </div>
-        {% empty %}
-            <p>No products to display.</p>
-        {% endfor %}
-    </div>
 
-    <div class="pagination">
-        <div class="step-links">
-            {% if products_page.has_previous %}
-                <a href="?page=1{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">&laquo; first</a>
-                <a href="?page={{ products_page.previous_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">previous</a>
-            {% endif %}
+            <div class="product-details">
+                <h2 class="product-title">
+                    <a href="{% url 'product' p.id %}">{{ p }}</a>
+                </h2>
+                <div class="product-divider"></div>
 
-            <span class="current">
-                Page {{ products_page.number }} of {{ products_page.paginator.num_pages }}.
-            </span>
+                <p class="product-category">{{ p.category }}</p>
 
-            {% if products_page.has_next %}
-                <a href="?page={{ products_page.next_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">next</a>
-                <a href="?page={{ products_page.paginator.num_pages }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}">last &raquo;</a>
-            {% endif %}
+                {% if p.price %}
+                    <p class="product-price">{{ p.price }}</p>
+                {% endif %}
+
+                <p class="product-desc">{{ p.short_description|truncatechars:80 }}</p>
+
+                <a href="{% url 'product' p.id %}" class="btn-view">View Details</a>
+            </div>
+        </article>
+      {% empty %}
+        <div class="no-products">
+            <p>No masterpieces found matching your criteria.</p>
         </div>
+      {% endfor %}
     </div>
+
+    {% if is_paginated or page_obj.has_other_pages %}
+    <nav class="pagination-nav">
+        <ul class="pagination-list">
+            {% if page_obj.has_previous %}
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}{% if current_sort %}&sort={{ current_sort }}{% endif %}{% if request.GET.name %}&name={{ request.GET.name }}{% endif %}">&laquo; Prev</a>
+                </li>
+            {% endif %}
+
+            {% for num in paginator.page_range %}
+                {% if num == page_obj.number %}
+                    <li><span class="current">{{ num }}</span></li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                     <li>
+                        <a href="?page={{ num }}{% if current_sort %}&sort={{ current_sort }}{% endif %}">{{ num }}</a>
+                     </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}{% if current_sort %}&sort={{ current_sort }}{% endif %}">Next &raquo;</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+  </div>
+
+  <script>
+      const resetBtn = document.getElementById('reset-filters-btn');
+      if (resetBtn) {
+          resetBtn.addEventListener('click', function(event) {
+              const userConfirmed = confirm("Warning: You are about to clear all active filters and search criteria. Do you want to proceed?");
+              if (!userConfirmed) {
+                  event.preventDefault();
+              }
+          });
+      }
+  </script>
 {% endblock %}

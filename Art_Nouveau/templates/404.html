@@ -1,0 +1,16 @@
+{% extends "Art_Nouveau/base.html" %}
+
+{% block title %}Page not found(404){% endblock %}
+
+{% block content %}
+<section id="error-page" style="text-align: center; padding: 50px 0;">
+    <h1 style="font-size: 3em; color: #8B0000;">404</h1>
+    <h2>Page not found</h2>
+
+    <div style="margin-top: 30px;">
+        <a href="{% url 'products' %}" class="btn" style="text-decoration: none; border: 1px solid #333; padding: 10px 20px; border-radius: 5px;">
+            &larr; Back to product list
+        </a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'Art_Nouveau/base.html' %}
+{% load static %}
+
+{% block title %}Access Denied{% endblock %}
+
+{% block content %}
+<div style="padding: 40px; text-align: center; max-width: 800px; margin: 0 auto;">
+    
+    <h2 style="color: #555;">
+        {% if user.is_authenticated %}
+            Hello {{ user.username }}
+        {% else %}
+            Hello esteemed anonymous user
+        {% endif %}
+    </h2>
+
+    <hr style="width: 50%; margin: 20px auto;">
+
+    <h1>{{ header_title|default:"Error 403" }}</h1>
+
+    <p style="font-size: 1.2em; margin-bottom: 30px;">
+        {{ custom_message }}
+    </p>
+
+    <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+        <p>You have received a 403 error <strong>{{ error_count }}</strong> times during this session.</p>
+
+        {% if error_count > max_errors %}
+            <p style="color: red; font-weight: bold; font-size: 1.1em; margin-top: 10px;">
+                <i class="fa-solid fa-triangle-exclamation"></i> 
+                WARNING! You have exceeded the limit of unauthorized attempts (Limit: {{ max_errors }}).
+                This incident has been reported to the administrators.
+            </p>
+        {% endif %}
+    </div>
+
+    <br>
+    <a href="{% url 'index' %}" class="navbtn" style="background-color: #333; color: white; padding: 10px 20px; text-decoration: none;">
+        Back to Home
+    </a>
+</div>
+{% endblock %}

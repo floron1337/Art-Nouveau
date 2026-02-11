@@ -1,0 +1,16 @@
+Subject: {{ subject }}
+
+Dear Art Enthusiast,
+
+We have noticed your keen interest in our {{ category_name }} collection and we would like to reward your passion for fine art.
+
+We are pleased to announce the launch of our new campaign: "{{ promotion_name }}".
+
+As a valued customer, you benefit from a {{ discount }}% discount exclusively on {{ category_name }} items.
+
+This offer is valid until: {{ expiration_date|date:"F j, Y" }}.
+
+{{ extra_data }}
+
+Warm regards,
+The Art Nouveau Team

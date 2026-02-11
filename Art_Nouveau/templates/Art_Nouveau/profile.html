@@ -1,0 +1,100 @@
+{% extends 'Art_Nouveau/base.html' %}
+{% load static %}
+
+{% block title %}Profile | Art Nouveau{% endblock %}
+
+{% block content %}
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <div class="auth-container">
+        <div class="auth-card profile-card">
+
+            <div class="auth-header">
+                <span class="profile-welcome">Welcome back,</span>
+                <h1>{{ user.username }}</h1>
+                <div class="gold-divider-sm"></div>
+            </div>
+
+            <div class="profile-details-list">
+                <h3>Member Details</h3>
+
+                <div class="info-row">
+                    <span class="label">First Name</span>
+                    <span class="value">{{ user.first_name|default:"-" }}</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Last Name</span>
+                    <span class="value">{{ user.last_name|default:"-" }}</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Email</span>
+                    <span class="value">{{ user.email|default:"-" }}</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Phone</span>
+                    <span class="value">{{ user.phone|default:"-" }}</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Location</span>
+                    <span class="value">
+                        {% if user.city %}{{ user.city }}{% endif %}
+                        {% if user.county %}, {{ user.county }}{% endif %}
+                        {% if not user.city and not user.county %}-{% endif %}
+                    </span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Country</span>
+                    <span class="value">{{ user.country|default:"-" }}</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Address</span>
+                    <span class="value">{{ user.address|default:"-" }}</span>
+                </div>
+            </div>
+
+            {# Verificăm dacă userul are VREUN drept special (produs sau site admin) #}
+            {% if perms.Art_Nouveau.add_product or is_admin %}
+            <div class="profile-details-list admin-section">
+                <h3>Administration Tools</h3>
+                <div class="admin-buttons-grid">
+
+                    {# 1. Buton Adaugare Produse (Doar pentru grupul Administratori_produse) #}
+                    {# ATENȚIE: Verifică dacă 'Art_Nouveau' e numele corect din apps.py #}
+                    {% if perms.Art_Nouveau.add_product %}
+                        <a href="{% url 'add_product' %}" class="btn-outline">
+                            + Create New Product
+                        </a>
+                        <br>
+                    {% endif %}
+
+                    {# 2. Butoane Logs si Info (Doar pentru Administratori_site) #}
+                    {% if is_admin %}
+                        <a href="{% url 'logs' %}" class="btn-outline">View System Logs</a>
+                        <br>
+                        <a href="{% url 'info' %}" class="btn-outline">Server Info</a>
+                    {% endif %}
+
+                </div>
+            </div>
+            <hr><br>
+            {% endif %}
+            <div class="profile-actions">
+                <a href="{% url 'password_change' %}" class="btn-outline">
+                    Change Password
+                </a>
+                <br>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-text-only">Log Out</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

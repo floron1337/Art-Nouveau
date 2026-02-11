@@ -1,39 +1,55 @@
-{% extends 'Art_Nouveau/baza.html' %}
+{% extends "Art_Nouveau/base.html" %}
 {% load static %}
 
-{% block title %}{{ product.name }} | Art Nouveau{% endblock %}
+{% block title %}{{ product.name }} | Collection{% endblock %}
 
 {% block content %}
-    <div class="product-detail-container">
-        <h2>{{ product.name }}</h2>
-        
-        {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 600px; height: auto; margin-bottom: 20px;">
-        {% else %}
-            <p>Image unavailable.</p>
-        {% endif %}
-        
-        <hr>
-        
-        <h3>Product Details</h3>
-        <p>{{ product.description|linebreaks }}</p>
-        
-        <p class="price" style="font-size: 1.2em; font-weight: bold;">Price: ${{ product.price }}</p>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-        {% if product.category %}
-            <p class="category">
-                Category: 
-                <a href="{{ product.category.get_absolute_url }}">
-                    {% if product.category.icon_class %}
-                        <i class="{{ product.category.icon_class }}"></i>
-                    {% endif %}
-                    <strong>{{ product.category.name }}</strong>
-                </a>
-            </p>
-        {% endif %}
-        
-        <br>
-        <a href="{% url 'products' %}">Back to product list</a>
+  <div class="detail-page-container">
+
+    <div class="detail-nav">
+        <a href="{% url 'products' %}" class="back-link">&larr; Return to Collection</a>
+    </div>
+
+    <div class="detail-grid">
+
+        <div class="detail-image-col">
+            <div class="img-frame detail-frame">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% else %}
+                    <img src="{% static 'Art_Nouveau/images/default_product.png' %}" alt="No image available" class="default-img">
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="detail-info-col">
+            <div class="info-header">
+                <span class="category-tag">{{ product.category }}</span>
+                <h1>{{ product.name }}</h1>
+                <div class="gold-divider-left"></div>
+            </div>
+
+            {% if product.price %}
+                <div class="price-display">
+                    {{ product.price }}
+                </div>
+            {% endif %}
+
+            <div class="description-text">
+                <h3>Curator's Note</h3>
+                <p>{{ product.description|linebreaksbr }}</p>
+            </div>
+
+            <div class="action-area">
+                <div class="meta-row">
+                    <span><strong>Authenticity:</strong> Verified</span>
+                    <span><strong>ID:</strong> #{{ product.id }}</span>
+                </div>
+            </div>
+        </div>
 
     </div>
+  </div>
 {% endblock %}

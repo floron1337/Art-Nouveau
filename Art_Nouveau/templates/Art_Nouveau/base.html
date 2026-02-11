@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Art Nouveau{% endblock %}</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="{% static 'Art_Nouveau/css/style.css' %}"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+    <body>
+        <header id="main-header">
+            <nav id="header-nav">
+                <a href="/" id="header-logo">
+                    <img src="{% static "Art_Nouveau/images/logo.png" %}" alt="Art Nouveau" width="400">
+                </a>
+                {% block nav_extra %}{% endblock %}
+
+                <div id="nav-links">
+                    <a class="navbtn" href="{% url 'index' %}">Home</a>
+                    <a class="navbtn" href="{% url 'about' %}">About</a>
+                    <a class="navbtn" href="{% url 'products' %}">Products</a>
+                    <a class="navbtn" href="{% url 'contact' %}">Contact</a>
+                    {% if user.is_authenticated %}
+                        <a class="navbtn" href="{% url 'profile' %}">Profile</a>
+                    {% else %}
+                        <a class="navbtn" href="{% url 'login' %}">Log In</a>
+                    {% endif %}
+                </div>
+            </nav>
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer id="page-footer">
+            <div id="footer-sep"></div>
+            <br/>
+            <h2>&copy; Art Nouveau 2025</h2>
+            <div id="footer-admin">
+                <p>User IP: {{ user_ip }}</p>
+                <a href="{% url 'info' %}">Info</a>
+                <a href="{% url 'logs' %}">Logs</a>
+            </div>
+            {% block footer %}
+            {% endblock %}
+        </footer>
+    </body>
+</html>

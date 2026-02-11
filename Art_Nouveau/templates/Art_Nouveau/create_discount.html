@@ -1,0 +1,61 @@
+{% extends "Art_Nouveau/base.html" %}
+
+{% block title %}Create Discount | Art Nouveau{% endblock %}
+
+{% block content %}
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <div class="auth-container">
+        <div class="auth-card contact-card">
+
+            <div class="auth-header">
+                <h1>Create Campaign</h1>
+                <div class="gold-divider-sm"></div>
+                <p style="margin-top: 15px; font-style: italic; color: #555;">
+                    Launching this discount will automatically notify subscribed clients via email.
+                </p>
+            </div>
+
+            <form method="post" class="auth-form">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-error">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <small class="form-help-text">{{ field.help_text }}</small>
+                        {% endif %}
+
+                        {% if field.errors %}
+                            <div class="field-error">
+                                {% for error in field.errors %}
+                                    <span>{{ error }}</span><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn-submit">
+                    Launch Discount & Send Emails
+                </button>
+
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="{% url 'products' %}" style="color: #666; text-decoration: underline;">Cancel</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

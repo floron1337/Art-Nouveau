@@ -1,0 +1,15 @@
+Subject: {{ subject }}
+
+Hello!
+
+Time is running out! Your favorite art pieces from the {{ category_name }} category are now on sale.
+
+Don't miss the "{{ promotion_name }}" event!
+Get {{ discount }}% OFF on all {{ category_name }} products right now.
+
+Hurry up! This offer expires on: {{ expiration_date|date:"M d, Y" }}.
+
+{{ extra_data }}
+
+Secure your masterpiece before it's gone!
+Art Nouveau Shop

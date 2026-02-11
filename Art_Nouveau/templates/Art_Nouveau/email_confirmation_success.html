@@ -1,0 +1,40 @@
+{% extends 'Art_Nouveau/base.html' %}
+
+{% block title %}Email Confirmed | Art Nouveau{% endblock %}
+
+{% block content %}
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <div class="auth-container">
+        <div class="auth-card" style="text-align: center;">
+
+            <div style="font-size: 50px; color: var(--art-green); margin-bottom: 20px;">
+                <i class="fa-solid fa-envelope-circle-check"></i>
+            </div>
+
+            <div class="auth-header">
+                <h1>Welcome Aboard</h1>
+                <div class="gold-divider-sm"></div>
+            </div>
+
+            {% if messages %}
+                <div class="messages-container" style="margin-bottom: 20px;">
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <p style="font-size: 18px; color: #555; margin-bottom: 30px;">
+                Your e-mail address has been successfully confirmed. You may now access your account.
+            </p>
+
+            <a href="{% url 'login' %}" class="btn-submit" style="display: block; text-decoration: none;">
+                Proceed to Log In
+            </a>
+
+        </div>
+    </div>
+{% endblock %}
